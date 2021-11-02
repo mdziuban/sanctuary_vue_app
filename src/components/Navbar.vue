@@ -27,7 +27,7 @@
               <router-link :to = "{ name: 'logout' }" class="btn btn-outline-dark text-light">Logout</router-link>
             </li>
             <li class="nav-item">
-              <a href="http://127.0.0.1:8000/playgame/" class="btn btn-outline-dark text-light mx-3">Play Game</a>
+              <a href="https://sanctuary-django.herokuapp.com/playgame/" class="btn btn-outline-dark text-light mx-3">Play Game</a>
             </li>
         </ul>
       </div>
