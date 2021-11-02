@@ -2,8 +2,6 @@ import { createStore } from 'vuex'
 import { getAPI } from './axios-api'
 import createPersistedState from "vuex-persistedstate"
 
-
-
 export default createStore({
     state() {
         return {
