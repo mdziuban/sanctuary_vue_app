@@ -1,7 +1,11 @@
 <template>
   <body class="posts bg-light text-dark">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <Navbar></Navbar>
-    <p class="text-center my-5 display-3 title-text">The Sanctuary</p>
+    <h1 class="text-center my-5">The Sanctuary</h1>
     <article class="container" id="app">
       <div class="row">
         <div class="col-4">
@@ -23,9 +27,9 @@
             </div>
           </router-link>
         </div>
-        <div class="col-8 ">
+        <div class="col-8">
           <div class="">
-            <div class="bg-light pe-1 pt-2 rounded row ">
+            <div class="bg-light pe-1 pt-2 rounded row">
               <div class="col-2">
                 <img
                   :src="UserData.player.profilePic"
@@ -56,7 +60,7 @@
                   class="card mb-1 rounded bg-gradient row"
                   style="background-color: #f9f9f9"
                 >
-                  <div class="card-header" style="display: flex;">
+                  <div class="card-header" style="display: flex">
                     <div class="col-2">
                       <img :src="post.user.player.profilePic" class="col-12" />
                     </div>
@@ -73,9 +77,16 @@
                       <p>{{ post.hashtags }}</p>
                     </h5>
                     <div class="row my-2">
+                      <span v-if="post.user.username === UserData.username" class="col-1 d-flex justify-content-center align-items-center"> {{ post.user_likes.length }}</span>
+                      <span v-else-if="post.user.username !== UserData.username && post.user_likes.indexOf(UserData.id) != -1"  class="material-icons col-1 d-flex justify-content-center align-items-center"> favorite </span>
+                      <span v-else class="material-icons col-1 d-flex justify-content-center align-items-center">
+                      <button @click="likePost(post)" class="btn btn-outline-light text-dark fs-4">    
+                         favorite_outline 
+                      </button>   
+                      </span>
                       <input
                         v-model="post.content"
-                        class="col-8"
+                        class="col-7"
                         type="text"
                         placeholder="Reply"
                       />
@@ -94,24 +105,24 @@
                         Show Replies
                       </button>
                     </div>
-                <div
-                  v-show="post.id === postReplyShow"
-                  class="reply rounded shadow"
-                >
-                  <div v-for="reply in ReplyData" :key="reply.id">
-                    <div class="card-header row my-1">
-                      <div class="col-12 text-start">
-                        <h3 class="card-title">{{ reply.username }}</h3>
-                        <p>{{ formatDate(reply.reply_created) }}</p>
+                    <div
+                      v-show="post.id === postReplyShow"
+                      class="reply rounded shadow"
+                    >
+                      <div v-for="reply in ReplyData" :key="reply.id">
+                        <div class="card-header row my-1">
+                          <div class="col-12 text-start">
+                            <h3 class="card-title">{{ reply.username }}</h3>
+                            <p>{{ formatDate(reply.reply_created) }}</p>
+                          </div>
+                          <div class="card-body text-start bg-gradient">
+                            <h5 class="card-text">
+                              {{ reply.text_content }}<br /><br />
+                              <!-- <img v-if="post.img_content" :src="'api/'+post.img_content"> -->
+                            </h5>
+                          </div>
+                        </div>
                       </div>
-                      <div class="card-body text-start bg-gradient">
-                        <h5 class="card-text">
-                          {{ reply.text_content }}<br /><br />
-                          <!-- <img v-if="post.img_content" :src="'api/'+post.img_content"> -->
-                        </h5>
-                      </div>
-                  </div>
-                </div>
                     </div>
                   </div>
                 </div>
@@ -155,6 +166,7 @@ export default {
           },
         })
         .then((response) => {
+          console.log(response)
           this.$store.state.PostData = response.data;
         })
         .catch((err) => console.log(err));
@@ -206,6 +218,18 @@ export default {
             this.$store.state.ReplyData = response.data;
           });
     },
+    likePost(post) {
+      let bodyParameters = new FormData();
+      bodyParameters.append("user_likes", this.$store.state.UserData.id);
+      getAPI
+        .patch("/postlike/" + post.id, bodyParameters, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${this.$store.state.accessToken}`,
+          },
+        })
+        .then(() => this.$router.go())
+    },
     getUser() {
       getAPI
         .get("/player/", {
@@ -215,7 +239,7 @@ export default {
           params: { username: this.$store.state.username.username },
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           this.$store.state.UserData = response.data[0];
         });
     },
@@ -249,7 +273,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&family=Zen+Maru+Gothic&display=swap");
-.title-text {
+h1 {
   font-family: "Zen Antique Soft", serif;
 }
 .reply > div > div {
