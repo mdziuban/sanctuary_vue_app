@@ -1,8 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-6">
-      <img :src="SiteImages.image" class="w-100" alt="Waterfall" />
-    </div>
+    <img :src="SiteImages.image" class="w-100" alt="Waterfall" style="position:fixed"/>
     <div class="col-sm-6">
       <div class="row h-50 d-flex justify-content-center align-items-center">
         <div class="row mb-3">
