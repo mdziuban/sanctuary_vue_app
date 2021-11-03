@@ -3,10 +3,11 @@
     <div class="">
       <img :src="SiteImages.image" class="img-fluid Min100 " alt="Waterfall" />
     </div>
-    <div class="centered">
-        <div class="row mb-3 text-center">
-          <h1 class="my-3">Welcome to Sanctuary</h1>
+            <div class="row mb-3 text-center top">
+          <h1 class="my-3 display-1">Welcome to Sanctuary</h1>
         </div>
+    <div class="centered">
+
     <div class="d-flex  align-items-center  justify-content-center">
       <div class="row h-50 col-4 ">
         <h4 v-if="incorrectAuth">
@@ -115,6 +116,12 @@ export default {
 .centered {
   position: absolute;
   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.top {
+  position: absolute;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
