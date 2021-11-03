@@ -1,7 +1,7 @@
 <template>
   <body class="posts bg-light text-dark">
     <Navbar></Navbar>
-    <h1 class="text-center my-5 ">The Sanctuary</h1>
+    <p class="text-center my-5 display-3">The Sanctuary</p>
     <article class="container" id="app">
       <div class="row">
         <div class="col-4">
