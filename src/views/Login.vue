@@ -1,16 +1,19 @@
 <template>
-  <div class="row" v-bind:style="{ backgroundImage: SiteImages.image }">
-    <!-- <img :src="SiteImages.image" class="w-100" alt="Waterfall" style="position:fixed"/> -->
-    <div class="col-sm-6">
-      <div class="row h-50 d-flex justify-content-center align-items-center">
-        <div class="row mb-3">
-          <h1 class="text-center my-3">Welcome to Sanctuary</h1>
+  <div class="row justify-content-center img_container">
+    <div class="">
+      <img :src="SiteImages.image" class="img-fluid Min100 " alt="Waterfall" />
+    </div>
+    <div class="centered">
+        <div class="row mb-3 text-center">
+          <h1 class="my-3">Welcome to Sanctuary</h1>
         </div>
+    <div class="d-flex  align-items-center  justify-content-center">
+      <div class="row h-50 col-4 ">
         <h4 v-if="incorrectAuth">
           The username or password you entered was incorrect.
         </h4>
-        <form v-on:submit.prevent="login()">
-          <div class="row mb-3">
+        <form v-on:submit.prevent="login()" class="">
+          <div class="row mb-3 d-flex justify-content-center">
             <div class="col-sm-10">
               <input
                 type="text"
@@ -22,7 +25,7 @@
               />
             </div>
           </div>
-          <div class="row mb-3">
+          <div class="row mb-3 d-flex justify-content-center">
             <div class="col-sm-10">
               <input
                 type="password"
@@ -34,22 +37,30 @@
               />
             </div>
           </div>
-          <div class="col-sm-10 d-grid mb-3">
-            <input type="submit" class="btn btn-primary btn-lg" value="Login" />
+          <div class="row d-flex justify-content-center">
+          <div class="mb-3 ">
+            <div class="col-1"></div>
+            <input type="submit" class="col-4 btn btn-outline-dark bg-success bg-gradient btn-lg mb-1" value="Login" />
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+            <router-link
+                :to="{ name: 'register' }"
+                class="col-4 btn btn-outline-light btn-lg"
+                >Register</router-link
+            >
+            <div class="col-1"></div>
+          </div>
           </div>
         </form>
-        <div class="row h-50 d-flex justify-content-center align-items-center">
-          <div class="row mb-3">
-            <div class="col-sm-10 d-grid mb-3">
-              <router-link
-                :to="{ name: 'register' }"
-                class="btn btn-outline-secondary btn-lg"
-                >Register</router-link
-              >
+        <div class="row h-50 d-flex justify-content-center">
+         
+            <div class="col-sm-10 mb-3">
+
             </div>
-          </div>
+       
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -94,3 +105,20 @@ export default {
   },
 };
 </script>
+
+<style>
+.img_container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.Min100 {
+  min-height: 100vh;
+}
+</style>
