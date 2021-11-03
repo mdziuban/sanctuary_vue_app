@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <img :src="SiteImages.image" class="w-100" alt="Waterfall" style="position:fixed"/>
+  <div class="row" v-bind:style="{ backgroundImage: SiteImages.image }">
+    <!-- <img :src="SiteImages.image" class="w-100" alt="Waterfall" style="position:fixed"/> -->
     <div class="col-sm-6">
       <div class="row h-50 d-flex justify-content-center align-items-center">
         <div class="row mb-3">
