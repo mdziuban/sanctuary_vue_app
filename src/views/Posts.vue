@@ -1,7 +1,7 @@
 <template>
   <body class="posts bg-light text-dark">
     <Navbar></Navbar>
-    <p class="text-center my-5 display-3">The Sanctuary</p>
+    <p class="text-center my-5 display-3 title-text">The Sanctuary</p>
     <article class="container" id="app">
       <div class="row">
         <div class="col-4">
@@ -249,7 +249,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&family=Zen+Maru+Gothic&display=swap");
-h1 {
+.title-text {
   font-family: "Zen Antique Soft", serif;
 }
 .reply > div > div {
