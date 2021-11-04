@@ -6,7 +6,7 @@
     />
     <Navbar v-if="!UserData.player.suspended || UserData.is_staff"></Navbar>
     <article
-      v-if="!userInfoActive && !UserData.player.suspended && !UserData.is_staff"
+      v-if="(!userInfoActive && !UserData.player.suspended) || UserData.is_staff"
       class="container"
       id="app"
     >
