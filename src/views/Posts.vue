@@ -4,9 +4,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <Navbar v-if="!UserData.player.suspended"></Navbar>
+    <Navbar v-if="!UserData.player.suspended && !UserData.player.is_staff"></Navbar>
     <article
-      v-if="!userInfoActive && !UserData.player.suspended"
+      v-if="!userInfoActive && !UserData.player.suspended && !UserData.player.is_staff"
       class="container"
       id="app"
     >
@@ -221,7 +221,7 @@
           <h3 class="my-5 text-start">Last Name: {{ userInfo.last_name }}</h3>
           <h3 class="my-5 text-start">Bio: {{ userInfo.player.bio }}</h3>
           <button @click="hideUserInfo" class="btn btn-lg btn-dark bg-gradient my-2">Return to Feed</button>
-                <p
+                <h3
           v-if="UserData.is_staff && userInfo.player.suspended == false"
           style="color: green"
         >
@@ -229,12 +229,12 @@
           <button @click="suspendUser(userInfo.id)" class="btn btn-danger my-3">
             Suspend Player
           </button>
-        </p>
-        <p v-else-if="UserData.is_staff && userInfo.player.suspended == true" style="color: red">
+        </h3>
+        <h3 v-else-if="UserData.is_staff && userInfo.player.suspended == true" style="color: red">
           Suspended
           <button @click="unsuspendUser(userInfo.id)" class="btn btn-success my-3">
             Unsuspend Player
-          </button></p>
+          </button></h3>
         </div>
       </div>
 
@@ -244,7 +244,7 @@
     </div>
       
     </article>
-    <article v-if="UserData.player.suspended">
+    <article v-if="UserData.player.suspended && !UserData.player.is_staff">
       <h1>
         Your account has been suspened due to breaking the community guidelines
         <br /><br />
