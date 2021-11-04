@@ -203,7 +203,7 @@
     <!--                 USER INFORMATION SECTION                -->
 
 
-    <article v-if="userInfoActive">
+    <article v-if="userInfoActive" class="bg-dark text-light Min100">
       <div class="container">
       <h1 class="p-3 my-1 display-4">{{ userInfo.username }}</h1>
       <div class="row">
