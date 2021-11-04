@@ -226,7 +226,7 @@
           style="color: green"
         >
           Active
-          <button v-if="!UserData.is_staff"  @click="suspendUser(userInfo.id)" class="btn btn-danger bg-gradient m-3">
+          <button v-if="!userInfo.is_staff"  @click="suspendUser(userInfo.id)" class="btn btn-danger bg-gradient m-3">
             Suspend Player
           </button>
         </h3>
@@ -389,6 +389,7 @@ export default {
           },
         })
         .then((response) => {
+          console.log(response.data)
           this.userInfo = response.data;
           this.userInfoActive = true;
         });
