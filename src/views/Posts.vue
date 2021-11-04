@@ -226,7 +226,7 @@
           style="color: green"
         >
           Active
-          <button @click="suspendUser(userInfo.id)" class="btn btn-danger my-3">
+          <button v-if="!UserData.player.is_staff"  @click="suspendUser(userInfo.id)" class="btn btn-danger my-3">
             Suspend Player
           </button>
         </h3>
